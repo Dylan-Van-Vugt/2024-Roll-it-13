@@ -32,7 +32,7 @@ def two_rolls():
 
 # Main routine starts here
 
-# Initialize pass variables
+# initialise 'pass' variables
 user_pass = "no"
 computer_pass = "no"
 
@@ -60,8 +60,8 @@ computer_points = computer_first[0]
 
 print(f"The computer rolled a total of {computer_points}.")
 
-# Score update...
-print(f"\n *** You have a score of {user_points} vs {computer_points} *** ")
+# Score update....
+print(f"\nℹℹℹ You have a score of {user_points} vs {computer_points} ℹℹℹℹ")
 
 # Loop (while both user / computer have <= 13 points)...
 while computer_points < 13 and user_points < 13:
@@ -72,7 +72,6 @@ while computer_points < 13 and user_points < 13:
 
     if user_pass == "no":
         roll_again = input("Do you want to roll the dice (Type 'no' to pass): ")
-        print()
 
     else:
         roll_again = "no"
@@ -93,54 +92,56 @@ while computer_points < 13 and user_points < 13:
         else:
             print(f"You rolled a {user_move} and now have a total score of {user_points}")
 
-    # If roll_again is not "yes"...
+    # if roll_again is not "yes"...
     else:
-        # If user passes, we don't want to let them roll again
+        # If user passes, we don't want to let them roll again!
         user_pass = "yes"
 
-        # If computer has 10 points or more (and is winning), it should pass
+        # if computer has 10 points or more (and is winning), it should pass!
         if computer_points >= 10 and computer_points >= user_points:
             computer_pass = "yes"
 
         # Don't let the computer roll again if the pass condition
-        # has been met in a previous iteration through the loop
+        # has been met in a previous iteration through the loop.
         elif computer_pass == "yes":
             pass
 
         else:
+            computer_pass = "no"
 
-            # Roll die for computer and update computer points
-            computer_move = roll_die()
-            computer_points += computer_move
+    if computer_pass != "no":
 
-            # Check computer has not gone over...
-            if computer_points > 13:
-                print(f"The computer rolled a {computer_move}, taking their points"
-                    f" to {computer_points}.  This is over 13 points so the computer loses!")
-                computer_points = 0
-                break
+        # Roll die for computer and update computer points
+        computer_move = roll_die()
+        computer_points += computer_move
 
-            else:
-                print(f"The computer rolled a {computer_move}.  The computer"
-                      f" now has {computer_points}.")
+        # check computer has not gone over...
+        if computer_points > 13:
+            print(f"💥💥💥The computer rolled a {computer_move}, taking their points"
+                  f" to {computer_points}.  This is over 13 points so the computer loses!💥💥💥")
+            computer_points = 0
+            break
+
+        else:
+            print(f"The computer rolled a {computer_move}.  The computer"
+                  f" now has {computer_points}.")
 
     print()
 
-    # Tell user if they are winning, losing, or if it's a tie
+    # Tell user if they are winning, losing or if it's a tie.
     if user_points > computer_points:
-        result = "You are ahead. "
+        result = "🙂🙂🙂 You are ahead. 🙂🙂🙂"
     elif user_points < computer_points:
-        result = "The computer is ahead. "
+        result = "😯😯😯 The computer is ahead! 😯😯😯"
     else:
-        result = "It's currently a tie. "
+        result = "👀It's currently a tie.👀"
 
     print(f"{result} \tUser: {user_points} \t | \t Computer: {computer_points}")
 
-    # If both the user and the computer have passed,
-    # we need to exit the loop
+    # if both the user and the computer have passed,
+    # we need to exit the loop.
     if computer_pass == "yes" and user_pass == "yes":
         break
-
 
 # Outside loop - double user points if they won and are eligilble
 
